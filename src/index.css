@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Cinematic Dark Theme */
+    --background: 222 15% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 224 14% 12%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 224 14% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 45 93% 58%;
+    --primary-foreground: 222 15% 8%;
+
+    --secondary: 224 14% 16%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 224 14% 16%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 0 84% 60%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 224 14% 20%;
+    --input: 224 14% 16%;
+    --ring: 45 93% 58%;
+
+    /* Custom Cinema Tokens */
+    --cinema-gold: 45 93% 58%;
+    --cinema-red: 0 84% 60%;
+    --cinema-purple: 265 89% 78%;
+    --cinema-dark: 222 15% 8%;
+    --cinema-card: 224 14% 12%;
+    --cinema-border: 224 14% 20%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(222 15% 8%), hsl(224 14% 12%));
+    --gradient-card: linear-gradient(145deg, hsl(224 14% 12%), hsl(224 14% 10%));
+    --gradient-accent: linear-gradient(135deg, hsl(45 93% 58%), hsl(38 92% 50%));
+
+    /* Shadows */
+    --shadow-card: 0 10px 30px -10px hsl(222 15% 3% / 0.5);
+    --shadow-glow: 0 0 40px hsl(45 93% 58% / 0.15);
+    --shadow-red-glow: 0 0 20px hsl(0 84% 60% / 0.3);
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Same as root for consistent dark theme */
+    --background: 222 15% 8%;
+    --foreground: 210 40% 98%;
+    --card: 224 14% 12%;
+    --card-foreground: 210 40% 98%;
+    --popover: 224 14% 12%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 45 93% 58%;
+    --primary-foreground: 222 15% 8%;
+    --secondary: 224 14% 16%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 224 14% 16%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 0 84% 60%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 224 14% 20%;
+    --input: 224 14% 16%;
+    --ring: 45 93% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background: hsl(var(--cinema-dark));
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--cinema-dark));
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--cinema-card));
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary));
+  }
+}
+
+@layer components {
+  /* Movie Card Animations */
+  .movie-card {
+    @apply transition-all duration-300 ease-out hover:scale-105 hover:z-10;
+    @apply shadow-lg hover:shadow-2xl;
+    box-shadow: var(--shadow-card);
+  }
+  
+  .movie-card:hover {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Hero Section */
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+
+  /* Button variants */
+  .btn-cinema {
+    @apply bg-gradient-to-r from-primary to-yellow-500 text-primary-foreground;
+    @apply hover:shadow-lg transition-all duration-300;
+  }
+
+  .btn-favorite {
+    @apply bg-accent/10 border border-accent text-accent;
+    @apply hover:bg-accent hover:text-accent-foreground transition-all duration-300;
+  }
+
+  .btn-favorite.active {
+    @apply bg-accent text-accent-foreground;
+    box-shadow: var(--shadow-red-glow);
+  }
+
+  /* Loading animation */
+  .loading-spinner {
+    @apply animate-spin rounded-full h-8 w-8 border-2 border-primary border-t-transparent;
+  }
+
+  /* Text glow effect */
+  .text-glow {
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.5);
+  }
+}
